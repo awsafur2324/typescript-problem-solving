@@ -5,23 +5,15 @@ In TypeScript, both interface and type are used to define the shape of objects, 
 ## 1. Basic Syntax :
 
 ```ts
-
 interface UserInterface {
-
   name: string;
-
   age: number;
-
 }
 
 type UserType = {
-
   name: string;
-
   age: number;
-
 };
-
 ```
 
 ## 2. Extending/Inheritance :
@@ -35,9 +27,7 @@ type UserType = {
 // Using interface
 
 interface Person {
-
   name: string;
-
 }
 
 interface Employee extends Person {
@@ -47,17 +37,12 @@ interface Employee extends Person {
 }
 
 // Using type
-
 type PersonType = {
-
   name: string;
-
 };
 
 type EmployeeType = PersonType & {
-
   salary: number;
-
 };
 
 ```
@@ -71,25 +56,17 @@ type EmployeeType = PersonType & {
 ```ts
 
 interface Book {
-
   title: string;
-
 }
 
 interface Book {
-
   author: string;
-
 }
 
 // Merged interface
-
 const myBook: Book = {
-
   title: "TypeScript Handbook",
-
   author: "Microsoft",
-
 };
 
 ```
@@ -103,9 +80,7 @@ const myBook: Book = {
 ```ts
 
 type ID = string | number;     // Union type
-
 type Point = [number, number]; // Tuple type
-
 type Status = "loading" | "success" | "error"; // Literal union
 
 ```
@@ -178,7 +153,7 @@ userId = "abc123";  // valid
 userId = 101;       // valid
 userId = true;      // Error: boolean is not assignable to ID
 ```
-## ntersection Types (&) :
+## Intersection Types (&) :
 An intersection type combines multiple types into one. The resulting type has all properties from the combined types. Use when an object must satisfy multiple type requirements.
 ```ts
 type ContactInfo = {
@@ -210,7 +185,9 @@ Registered User: has an email and a username
 
 You want to accept both kinds in a function.
 ```ts
+
 //--define type
+
 // All users must have an email
 type EmailInfo = {
   email: string;
@@ -231,6 +208,7 @@ type GuestUser = EmailInfo;
 type LoginUser = GuestUser | RegisteredUser;
 
 //--Create a Login Function
+
 function login(user: LoginUser) {
   console.log(`Email: ${user.email}`);
 
@@ -240,7 +218,9 @@ function login(user: LoginUser) {
     console.log("Welcome, guest!");
   }
 }
+
 //--call the function
+
 const guest: GuestUser = { email: "guest@example.com" };
 const registered: RegisteredUser = {
   email: "user@example.com",
@@ -249,6 +229,7 @@ const registered: RegisteredUser = {
 
 login(guest);      //  Welcome, guest!
 login(registered); // Welcome back, john_doe!
+
 ```
 
 
