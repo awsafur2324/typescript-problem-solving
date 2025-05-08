@@ -5,10 +5,9 @@ function formatString(input: string, toUpper?: boolean): string {
         return input.toUpperCase();
     }
 }
-
-formatString("Hello");     
-formatString("Hello", true);
-formatString("Hello", false);  
+console.log(formatString("Hello"));
+console.log(formatString("Hello", true));
+console.log(formatString("Hello", false));
 
 
 
@@ -22,7 +21,7 @@ const books = [
     { title: "Book C", rating: 4.0 },
     { title: "Book C", rating: 4.1 },
 ];
-filterByRating(books);
+console.log(filterByRating(books));
 
 
 
@@ -32,8 +31,8 @@ function concatenateArrays<T>(...arrays: T[][]): T[] {
     return newArray;
 }
 
-concatenateArrays(["a", "b"], ["c"]);
-concatenateArrays([1, 2], [3, 4], [5, 6]);
+console.log(concatenateArrays(["a", "b"], ["c"]));
+console.log(concatenateArrays([1, 2], [3, 4], [5, 6]));
 
 
 class Vehicle {
@@ -59,8 +58,8 @@ class Car extends Vehicle {
 }
 
 const myCar = new Car("Toyota", 2021, "Corolla");
-myCar.getInfo();
-myCar.getModel();
+console.log(myCar.getInfo());
+console.log(myCar.getModel());
 
 
 function processValue(value: string | number): number {
@@ -70,10 +69,10 @@ function processValue(value: string | number): number {
         return value * 2;
     }
 }
-processValue("Hello");
-processValue(5);
+console.log(processValue("Hello"));
+console.log(processValue(5));
 
-// 6
+
 interface Product {
     name: string;
     price: number;
@@ -89,7 +88,7 @@ const products = [
     { name: "Notebook", price: 25 },
 ];
 
-getMostExpensiveProduct(products);
+console.log(getMostExpensiveProduct(products));
 
 
 enum Day {
@@ -117,8 +116,8 @@ function getDayType(day: Day): string {
             return "Invalid day";
     }
 }
-getDayType(Day.Tuesday);
-getDayType(Day.Sunday);
+console.log(getDayType(Day.Tuesday));
+console.log(getDayType(Day.Sunday));
 
 
 async function squareAsync(n: number): Promise<number> {
@@ -133,5 +132,5 @@ async function squareAsync(n: number): Promise<number> {
     });
 }
 
-squareAsync(4).then(console.log); 
+squareAsync(4).then(console.log);
 squareAsync(-3).catch(console.error);
