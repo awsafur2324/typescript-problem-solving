@@ -164,3 +164,91 @@ Although TypeScript adds a layer of safety and better structure to JavaScript.
 It helps you catch errors early, makes your code easier to understand, and keeps large projects more manageable.
 In short, TypeScript makes you a more confident and productive developer.
 
+# Provide an example of using union and intersection types in TypeScript.
+TypeScript gives us powerful ways to combine types using union (|) and intersection (&) operators. These help us write flexible and reusable code. In the below give two example :
+
+## Union Types (|) :
+A union type allows a variable to hold more than one type.When a value can be one of many types (like ID being a string or number).
+```ts
+type ID = string | number;
+
+let userId: ID;
+
+userId = "abc123";  // valid
+userId = 101;       // valid
+userId = true;      // Error: boolean is not assignable to ID
+```
+## ntersection Types (&) :
+An intersection type combines multiple types into one. The resulting type has all properties from the combined types. Use when an object must satisfy multiple type requirements.
+```ts
+type ContactInfo = {
+  email: string;
+  phone: string;
+};
+
+type PersonalInfo = {
+  name: string;
+  age: number;
+};
+
+type User = ContactInfo & PersonalInfo;
+
+const user: User = {
+  name: "Alice",
+  age: 30,
+  email: "alice@example.com",
+  phone: "123-456-7890"
+};
+```
+## Real-World Union Type Example
+(Scenario: User Login)
+You have two types of users:
+
+Guest: only has an email
+
+Registered User: has an email and a username
+
+You want to accept both kinds in a function.
+```ts
+//--define type
+// All users must have an email
+type EmailInfo = {
+  email: string;
+};
+
+// Registered users also have a username
+type UsernameInfo = {
+  username: string;
+};
+
+// RegisteredUser = email + username (intersection)
+type RegisteredUser = EmailInfo & UsernameInfo;
+
+// GuestUser = only email
+type GuestUser = EmailInfo;
+
+// Login input can be a guest or a registered user (union)
+type LoginUser = GuestUser | RegisteredUser;
+
+//--Create a Login Function
+function login(user: LoginUser) {
+  console.log(`Email: ${user.email}`);
+
+  if ('username' in user) {
+    console.log(`Welcome back, ${user.username}!`);
+  } else {
+    console.log("Welcome, guest!");
+  }
+}
+//--call the function
+const guest: GuestUser = { email: "guest@example.com" };
+const registered: RegisteredUser = {
+  email: "user@example.com",
+  username: "john_doe"
+};
+
+login(guest);      //  Welcome, guest!
+login(registered); // Welcome back, john_doe!
+```
+
+
